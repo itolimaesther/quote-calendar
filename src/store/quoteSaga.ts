@@ -30,12 +30,7 @@ interface CreateQuoteAction {
 	payload: Quote;
 }
 
-
-
-
-
-
-
+// Saga Generator function to fetch quotes
 function* getQuoteFetchSaga(
 	action: FetchQuotesAction
 ): Generator<CallEffect | PutEffect, void, any> {
@@ -48,14 +43,13 @@ function* getQuoteFetchSaga(
 		);
 		const data = yield quotes.text();
 		const quoteData = JSON.parse(data);
-		// console.log("Parsed data:", todoData);
 		yield put(getQuoteSuccess(quoteData.data));
 	} catch (error) {
 		console.error("Failed to fetch quotes", error);
 	}
 }
 
-
+// Saga Generator function to create new quote
 function* createQuoteSaga(
 	action: CreateQuoteAction
 ): Generator<CallEffect | PutEffect, void, any> {

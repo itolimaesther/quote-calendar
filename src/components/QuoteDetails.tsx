@@ -50,7 +50,6 @@ const QuoteDetails: React.FC<QuoteModalProps> = ({
 	}, [quote]);
 
 
-	console.log("Quote Details", quote);
 
 
 	return (

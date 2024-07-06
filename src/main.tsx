@@ -5,23 +5,21 @@ import { Provider } from "react-redux";
 import createSagaMiddleware from "redux-saga";
 import { configureStore } from "@reduxjs/toolkit";
 import App from './App'
-import SetSectionDetails from './routes/SetSectionDetails';
-import quoteReducer from "./store/quoteSlice"
+import SectionDetails from "./routes/SectionDetails";
+import quoteReducer from "./store/quoteSlice";
 import quoteSaga from "./store/quoteSaga";
-import './index.css'
+import "./index.css";
 
 const saga = createSagaMiddleware();
 
 const store = configureStore({
-  reducer: {
-    quotes: quoteReducer
-  },
-	middleware: (getDefaultMiddleware) =>
-		getDefaultMiddleware().concat(saga),
+	reducer: {
+		quotes: quoteReducer,
+	},
+	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(saga),
 });
 
-saga.run(quoteSaga)
-
+saga.run(quoteSaga);
 
 const router = createBrowserRouter([
 	{
@@ -30,7 +28,7 @@ const router = createBrowserRouter([
 	},
 	{
 		path: "set-section-details",
-		element: <SetSectionDetails />,
+		element: <SectionDetails />,
 	},
 ]);
 

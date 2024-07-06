@@ -70,27 +70,14 @@ export const quoteSlice = createSlice({
 			state.isLoading = false;
 		},
 		createQuote: (state, action: PayloadAction<Quote>) => {
-			state.isLoading = true;
+			state.isLoading = false;
 		},
-		// createQuote: (state, action: PayloadAction<Quote>) => {
-		// 	// state.quotes.push(action.payload);
-		// 	// state.quotes = [...state.quotes, action.payload];
-		// 	state.quotes = [...state.quotes, action.payload]; // Use spread operator to create a new array
-		// 	saveState(state);
-		// },
-		// createQuoteSuccess: (state, action: PayloadAction<Quote>) => {
-		// 	if (!Array.isArray(state.quotes.data)) {
-		// 		state.quotes.data = [];
-		// 	}
-		// 	state.quotes.data.push(action.payload);
-		// 	state.isLoading = false;
-		// 	saveState(state);
-		// },
+
 		createQuoteSuccess: (state, action: PayloadAction<Quote>) => {
 			if (!Array.isArray(state.quotes.data)) {
 				state.quotes.data = [];
 			}
-
+			// Checks if the quote created exist
 			const existingIndex = state.quotes.data.findIndex(
 				(quote) => quote.id === action.payload.id
 			);
@@ -141,9 +128,6 @@ export const quoteSlice = createSlice({
 		setQuoteDate: (state, action: PayloadAction<string>) => {
 			state.currentQuote.quote_date = action.payload;
 		},
-		editQuoteFail: (state) => {
-			state.isLoading = false;
-		},
 	},
 });
 
@@ -154,7 +138,6 @@ export const {
 	createQuote,
 	createQuoteSuccess,
 	createQuoteFail,
-	editQuoteFail,
 	updateSection,
 	addSection,
 	deleteSection,

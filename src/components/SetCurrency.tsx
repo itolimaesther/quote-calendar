@@ -82,7 +82,6 @@ const SetCurrency: React.FC<CurrencyModalProps> = ({
             data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 sm:max-w-lg 
             data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95 w-96 max-w-full duration-300"
 					>
-						{/* <div className="bg-white rounded-lg w-96 max-w-full shadow-lg transform transition-all duration-300"> */}
 						{/* Modal Header */}
 						<div className="flex p-6 justify-between items-center border-b-[1px] border-gray-200 pb-4">
 							<div>
@@ -151,23 +150,7 @@ const SetCurrency: React.FC<CurrencyModalProps> = ({
 													type="checkbox"
 													className="h-4 w-4 rounded border-gray-300 text-[#139C33] accent-[#139C33] focus:ring-[#139C33]"
 													checked={isBaseCurrency}
-													// onChange={() => setIsBaseCurrency(!isBaseCurrency)}
 													onChange={handleCheckboxChange}
-													// onChange={() => {
-													// 	setIsBaseCurrency(!isBaseCurrency);
-													// 	dispatch(
-													// 		updateSection({
-													// 			index: 0,
-													// 			section: {
-													// 				section_currency: {
-													// 					...updatedData.sections[sectionIndex]
-													// 						.section_currency,
-													// 					is_base_currency: !isBaseCurrency,
-													// 				},
-													// 			},
-													// 		})
-													// 	);
-													// }}
 												/>
 												<p className="text-gray-500">Yes, it is.</p>
 											</div>

@@ -1,14 +1,14 @@
 import { format, isToday } from "date-fns";
 import jsPDF from "jspdf";
 
+//This function formats date to string e.g 06/07/2024 - Saturday
 export function formatDateToString(date: Date): string {
 	const formattedDate = format(date, "dd/MM/yyyy");
 	const todayString = isToday(date) ? "Today" : format(date, "EEEE"); 
-
 	return `${todayString} ${formattedDate}`;
 }
 
-
+// T
 export const generatePDF = (quote: any) => {
 	const doc = new jsPDF();
 

@@ -32,10 +32,14 @@ const QuoteDrawer: React.FC<QuoteDrawerProps> = ({
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const [showDetailsModal, setShowDetailsModal] = useState<boolean>(false);
 	const [selectedQuote, setSelectedQuote] = useState<any>(null);
+	
+
+
+	
 
 	const handleShowModal = () => {
-		setShowModal(true)
-	}
+		setShowModal(true);
+	};
 
 	const handleShowDetailsModal = (quote: any) => {
 		setSelectedQuote(quote); // Set the selected quote details
@@ -57,7 +61,7 @@ const QuoteDrawer: React.FC<QuoteDrawerProps> = ({
 			return total + sectionTotal;
 		}, 0);
 	};
-	
+
 	const formatTime = (dateString: string) => {
 		const date = new Date(dateString);
 		return date
@@ -69,13 +73,6 @@ const QuoteDrawer: React.FC<QuoteDrawerProps> = ({
 			.toUpperCase();
 	};
 
-
-
-
-
-	console.log(quotesPerDay, "quotesPerDay");
-
-
 	if (!isDrawerOpen) {
 		return null;
 	}
@@ -85,7 +82,6 @@ const QuoteDrawer: React.FC<QuoteDrawerProps> = ({
 				transition
 				className="fixed inset-0 bg-opacity-75 transition-opacity duration-500 ease-in-out data-[closed]:opacity-0"
 			/>
-
 			<div className="fixed inset-0 overflow-hidden">
 				<div className="absolute inset-0 overflow-hidden">
 					<div className="pointer-events-none fixed inset-y-0 mt-38 lg:mt-38 sm:mt-20 right-0 flex max-w-full pl-10">
@@ -159,12 +155,13 @@ const QuoteDrawer: React.FC<QuoteDrawerProps> = ({
 				setShowModal={setShowModal}
 				onClose={handleCloseDrawer}
 			/>
-			{selectedQuote && ( // Render QuoteDetails only if selectedQuote is truthy
+			{/* Render QuoteDetails only if selectedQuote */}
+			{selectedQuote && (
 				<QuoteDetails
 					showDetailsModal={showDetailsModal}
 					setShowDetailsModal={setShowDetailsModal}
 					onClose={() => setShowDetailsModal(false)}
-					quote={selectedQuote} 
+					quote={selectedQuote}
 				/>
 			)}
 		</Dialog>

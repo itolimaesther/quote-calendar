@@ -1,7 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import { ArrowLeftIcon, EyeIcon, ArrowsRightLeftIcon, ChevronDownIcon, TrashIcon, PlusIcon } from "@heroicons/react/24/outline";
+import React, { useState, useEffect } from "react";
+import {
+	ArrowLeftIcon,
+	EyeIcon,
+	ArrowsRightLeftIcon,
+	ChevronDownIcon,
+	TrashIcon,
+	PlusIcon,
+} from "@heroicons/react/24/outline";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import {
 	updateSection,
 	addSectionData,
@@ -13,11 +20,10 @@ import {
 } from "../store/quoteSlice";
 import { DatePicker } from "rsuite";
 import { initialQuote, Quote, SectionData, Section } from "../types";
-import QuoteDetails from '../components/QuoteDetails';
-import SetCurrency from "../components/SetCurrency"
+import QuoteDetails from "../components/QuoteDetails";
+import SetCurrency from "../components/SetCurrency";
 
-
-const SetSectionDetails = () => {
+const SectionDetails = () => {
 	const navigate = useNavigate();
 
 	const [showModal, setShowModal] = useState<boolean>(false);
@@ -73,9 +79,6 @@ const SetSectionDetails = () => {
 			setSectionData(updatedData.sections[currentSectionIndex].section_data);
 		}
 	}, [updatedData]);
-
-	
-
 
 	const handleInput = (
 		event: React.ChangeEvent<HTMLInputElement>,
@@ -144,6 +147,7 @@ const SetSectionDetails = () => {
 		);
 	};
 
+	//This function delete the basis and also update the Redux state
 	const handleDeleteBasis = (sectionIndex: number, dataIndex: number) => {
 		const updatedSectionData = [...sectionData];
 		updatedSectionData.splice(dataIndex, 1);
@@ -183,14 +187,12 @@ const SetSectionDetails = () => {
 		dispatch(deleteSection({ index }));
 	};
 
-
 	const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target;
 		if (name === "quote_date") {
 			dispatch(setQuoteDate(value));
 		}
 	};
-	
 
 	const handleShowModal = (sectionIndex: number) => {
 		setCurrentSectionIndex(sectionIndex);
@@ -211,8 +213,6 @@ const SetSectionDetails = () => {
 		setShowDetailsModal(true);
 		dispatch(createQuote(updatedData));
 	};
-
-	console.log(updatedData, "updated")
 
 	return (
 		<div className="p-4 md:p-6 lg:p-8 text-left">
@@ -249,6 +249,7 @@ const SetSectionDetails = () => {
 					type="date"
 					id="quote_date"
 					name="quote_date"
+					className="border-[1px] p-2 rounded-md"
 					// value={data.quote_date}
 					value={quoteDate}
 					onChange={handleDateChange}
@@ -274,7 +275,7 @@ const SetSectionDetails = () => {
 										type="text"
 										id="section_name"
 										name="section_name"
-										className={`shadow-sm rounded-md px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500`}
+										className={`shadow-sm rounded-md px-3 py-2 border-[1px] border-gray-100 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500`}
 										placeholder="Enter Section label"
 										value={localSections[sectionIndex]?.section_name}
 										onChange={(e) => handleInput(e, sectionIndex)}
@@ -492,4 +493,4 @@ const SetSectionDetails = () => {
 	);
 };
 
-export default SetSectionDetails
+export default SectionDetails;

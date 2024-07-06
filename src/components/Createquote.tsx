@@ -5,12 +5,14 @@ import {
 	DialogPanel,
 	DialogTitle,
 } from "@headlessui/react";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { initialQuote, Quote } from "../types";
 import {
 	// updateQuote,
-	setQuoteTitle, setQuoteDate
+	setQuoteTitle,
+	setQuoteDate,
 } from "../store/quoteSlice";
 
 interface QuoteModalProps {
@@ -21,10 +23,10 @@ interface QuoteModalProps {
 
 const CreateQuote: React.FC<QuoteModalProps> = ({
 	showModal,
-  setShowModal,
-  onClose,
+	setShowModal,
+	onClose,
 }) => {
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const quoteTitle = useSelector(
 		(state: any) => state.quotes.currentQuote.quote_title
@@ -33,10 +35,8 @@ const CreateQuote: React.FC<QuoteModalProps> = ({
 		(state: any) => state.quotes.currentQuote.quote_date
 	);
 
-  const dataState = useSelector((state: any) => state.quote);
-  const [data, setData] = useState<Quote>(initialQuote);
-
-
+	const dataState = useSelector((state: any) => state.quote);
+	const [data, setData] = useState<Quote>(initialQuote);
 
 	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target;
@@ -46,16 +46,14 @@ const CreateQuote: React.FC<QuoteModalProps> = ({
 			dispatch(setQuoteDate(value));
 		}
 	};
-  
- 
 
-  const handleNext = () => {
+	const handleNext = () => {
 		setShowModal(false); // Close the modal
-    onClose(); // Notify the parent component (QuoteDrawer) to not close itself
-    navigate("/set-section-details");
-	}
+		onClose(); // Notify the parent component (QuoteDrawer) to not close itself
+		navigate("/set-section-details");
+	};
 
-  return (
+	return (
 		<Dialog className="relative z-10" open={showModal} onClose={onClose}>
 			<DialogBackdrop
 				transition
@@ -82,21 +80,7 @@ const CreateQuote: React.FC<QuoteModalProps> = ({
 								onClick={() => setShowModal(false)}
 								className="text-gray-500 hover:text-gray-700 focus:outline-none"
 							>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="24"
-									height="24"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									strokeWidth="2"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									className="feather feather-x"
-								>
-									<line x1="18" y1="6" x2="6" y2="18"></line>
-									<line x1="6" y1="6" x2="18" y2="18"></line>
-								</svg>
+								<XMarkIcon className="w-6" />
 							</button>
 						</div>
 

@@ -115,7 +115,6 @@ useEffect(() => {
 	};
 
 
-  console.log(quotes, "quotes")
     
 
   return (
@@ -161,13 +160,13 @@ useEffect(() => {
 									key={idx}
 									className={`${
 										backgroundStates[idx] ? "bg-gray-800" : "bg-white"
-									} p-2 text-left flex flex-col justify-between ${
+									} p-2 text-left flex flex-col justify-between group hover:bg-gray-700 ${
 										colStartClasses[getDay(day)]
 									}`}
 									onClick={() => handleDateClick(day)}
 								>
 									<p
-										className={`cursor-pointer flex items-center justify-center font-semibold h-4 w-4 p-[10px] rounded-md hover:text-white ${
+										className={`cursor-pointer flex items-center justify-center group-hover:text-white font-semibold h-4 w-4 p-[10px] rounded-md hover:text-white ${
 											isSameMonth(day, today)
 												? "text-gray-900"
 												: "text-gray-400"
@@ -178,8 +177,10 @@ useEffect(() => {
 										{format(day, "d")}
 									</p>
 									{quoteCount > 0 && (
-										<div className="text-[11px]">
-											<p className="text-left">{quoteCount} Quotes</p>
+										<div className="text-[11px] ">
+											<p className="text-left group-hover:text-white">
+												{quoteCount} Quotes
+											</p>
 											<p className="m-0 bg-green-50 px-1 rounded-md">
 												Total: ${totalAmount.toFixed(2)}
 											</p>
